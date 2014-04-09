@@ -34,7 +34,7 @@ public class IFS_Point {
 	/**
 	 * The Y-offset is used to translate the Y-position of A Point.
 	 */
-	private int offsetY = getHeight() / 2;
+	private int offsetY =  (getHeight() / 2);
 
 	/**
 	 * Canvas height used for offset calculation.
@@ -216,8 +216,8 @@ public class IFS_Point {
 	 * is represented by a filled 1*1 rectangle.
 	 */
 	public void draw(Graphics g) {
-		g.drawRect((int) ((getX() * getScale()) + getOffsetX()),
-				(int) ((getY() * getScale()) + getOffsetY()), 1, 1);
+		g.drawRect((int) (((getX() * -1) * getScale()) + getOffsetX()),
+				(int) (((getY() * -1) * getScale()) + getOffsetY()), 1, 1);
 	}
 
 }
