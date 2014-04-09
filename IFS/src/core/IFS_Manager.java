@@ -150,7 +150,7 @@ public class IFS_Manager {
 					pathToFile));
 
 			for (int i = 0; i < ifsList.size(); i++) {
-				if (!ifsList.get(i).isStandartFunction()) {
+				if (!ifsList.get(i).isStandartIFS()) {
 					writer.append(getIFSList().get(i).toStringForFile());
 					System.out.println(getIFSList().get(i).getName());
 					writer.newLine();

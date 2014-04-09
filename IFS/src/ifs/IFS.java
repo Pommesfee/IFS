@@ -4,29 +4,46 @@ import java.awt.Graphics;
 import java.util.ArrayList;
 import java.util.Random;
 
+/**
+ * This class is the Skeleton for an new Iterated-Function-System.
+ * You can define a new IFS by providing at least one {@link IFS_Function} for the IFS.
+ * 
+ * @author Pommesfee
+ * @version 1.0
+ * @since 1.0
+ */
 public class IFS {
 
 	private Random r = new Random();
 	
 	private String name = null;
-	private boolean isStandartFunction = false;
+	private boolean isStandartIFS = false;
 	
 	private ArrayList<IFS_Function> functions = new ArrayList<IFS_Function>();
 
-	int probablilities[];
+	private int probablilities[];
 	
 	private IFS_Point point;
 
 	private int height;
 	private int width;
 
-	public IFS(String name, int width, int height, ArrayList<IFS_Function> functions, boolean isStandartFunction) {
+	/**
+	 * Constructor for an new Iterated-Function-System.
+	 * 
+	 * @param name How this IFS is called.
+	 * @param width With of the Component this IFS is drawn to.
+	 * @param height Height of the Component this IFS is drawn to.
+	 * @param functions The functions that are used by this IFS. 
+	 * @param isStandartIFS If this IFS should be a standard IFS.
+	 */
+	public IFS(String name, int width, int height, ArrayList<IFS_Function> functions, boolean isStandartIFS) {
 		setName(name);
 		setWidth(width);
 		setHeight(height);
 		setFunctions(functions);
 	
-		setStandartFunction(isStandartFunction);
+		setStandartIFS(isStandartIFS);
 		
 		probablilities = new int[functions.size()];
 		
@@ -37,7 +54,14 @@ public class IFS {
 		chooseRandomPoint();
 	}
 
-	
+	/**
+	 * This method is responsible of choosing a function from the
+	 * IFS that should be executed in the next step.
+	 * To calculate which function should be executed, this method uses the
+	 * probability that is provided by each function.
+	 * 
+	 * @return The selected function.
+	 */
 	public int chooseFunction() {
 		
 		int random = r.nextInt(100 + 1);
@@ -105,6 +129,12 @@ public class IFS {
 	// xn+1 = axn+byn+e
 	// yn+1 = cxn+dyn+f
 	
+	/**
+	 * This methods purpose is to execute the function,
+	 * that has been selected in the first step.
+	 * 
+	 * @param choosenFunction Function that should be executed.
+	 */
 	public void doChoosenFunction(int choosenFunction) {
 		if(functions.get(choosenFunction) != null) {
 			double x = ((functions.get(choosenFunction).getA() * point.getX()) + (functions.get(choosenFunction).getB() * point.getY())) + functions.get(choosenFunction).getE();
@@ -115,6 +145,10 @@ public class IFS {
 		}
 	}
 
+	/**
+	 * A method to choose coordinates for a random Point
+	 * when a new IFS is initialized.
+	 */
 	private void chooseRandomPoint() {
 		point = new IFS_Point(Math.random() * getHeight(),
 				(Math.random() * getWidth()), getWidth(), getHeight());
@@ -128,20 +162,34 @@ public class IFS {
 		point.draw(g);
 	}
 
-	public boolean isStandartFunction() {
-		return isStandartFunction;
+	/**
+	 * Check if this IFS is a standard IFS.
+	 * @return True if standard IFS
+	 */
+	public boolean isStandartIFS() {
+		return isStandartIFS;
 	}
 
-
-	public void setStandartFunction(boolean isStandartFunction) {
-		this.isStandartFunction = isStandartFunction;
+	/**
+	 * Change this IFS from a normal IFS to a standard IFS or
+	 * the other way round.
+	 * @param isStandartIFS Whether this IFS should be standard or not. 
+	 */
+	public void setStandartIFS(boolean isStandartIFS) {
+		this.isStandartIFS = isStandartIFS;
 	}
 
-
+	/*
+	 * Method to get the name of this IFS.
+	 */
 	public String getName() {
 		return this.name;
 	}
 	
+	/**
+	 * Method to set(change) the name of an IFS
+	 * @param name
+	 */
 	private void setName(String name) {
 		this.name = name;
 	}
@@ -174,6 +222,10 @@ public class IFS {
 		this.width = width;
 	}
 
+	/**
+	 * Method to set the functions that are used by this IFS.
+	 * @param functions Functions.
+	 */
 	public void setFunctions(ArrayList<IFS_Function> functions) {
 		this.functions = functions;
 	}
@@ -185,19 +237,19 @@ public class IFS {
 		return this.point;
 	}
 	
+	/**
+	 * To String.
+	 */
 	@Override
 	public String toString() {
 		return this.getName();
 	}
 	
+	/**
+	 * To String for file.
+	 * @return How the IFS can be easily saved.
+	 */
 	public String toStringForFile() {
-		
-//		String function = "";
-//		for (int i = 0; i < functions.size(); i++) {
-//			function += "Function " + (i + 1) + ": \n" + functions.get(i).toString() + "\n";
-//		}
-//		
-//		return "IFS: " + this.getName() + "\n" + function;
 		
 		String function = "";
 		
@@ -205,7 +257,7 @@ public class IFS {
 			function += "Function: \n" + functions.get(i).toStringForFile() + "\n";
 		}
 		
-		return "IFS: " + this.getName() + "\n" + function + this.isStandartFunction;
+		return "IFS: " + this.getName() + "\n" + function + this.isStandartIFS;
 	}
 	
 }

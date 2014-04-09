@@ -1,4 +1,4 @@
 IFS
 ===
 
-Integrierte Funktions Systeme
+Iterierte Funktions Systeme

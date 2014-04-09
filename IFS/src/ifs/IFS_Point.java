@@ -34,7 +34,7 @@ public class IFS_Point {
 	/**
 	 * The Y-offset is used to translate the Y-position of A Point.
 	 */
-	private int offsetY =  (getHeight() / 2);
+	private int offsetY = getHeight() / 2;
 
 	/**
 	 * Canvas height used for offset calculation.
