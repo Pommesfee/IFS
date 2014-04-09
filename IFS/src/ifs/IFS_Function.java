@@ -1,5 +1,14 @@
 package ifs;
 
+/**
+ * This class represents a Function that is used in an 
+ * Iterated-Function-System {@link IFS} . It provides the
+ * values for the action that is done to a {@link IFS_Point}.
+ * 
+ * @author Pommesfee
+ * @version 1.0
+ * @since 1.0
+ */
 public class IFS_Function {
 
 	double a = 0;
